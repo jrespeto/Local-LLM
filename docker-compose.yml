@@ -1,0 +1,132 @@
+
+services:
+  langflow:
+    image: docker.io/langflowai/langflow:latest
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:7860:7860"
+    depends_on:
+      - postgres
+    environment:
+      - LANGFLOW_DATABASE_URL=postgresql://langflow:langflow@postgres:5432/langflow
+      # This variable defines where the logs, file storage, monitor data and secret keys are stored.
+      - LANGFLOW_CONFIG_DIR=/app/langflow
+      - DO_NOT_TRACK=true
+    volumes:
+      - langflow-data:/app/langflow
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    hostname: postgres
+    environment:
+      POSTGRES_USER: langflow
+      POSTGRES_PASSWORD: langflow
+      POSTGRES_DB: langflow
+    # ports:
+    #   - "127.0.0.1:5432:5432"
+    volumes:
+      - langflow-postgres:/var/lib/postgresql/data
+
+  qdrant:
+    image: qdrant/qdrant
+    restart: unless-stopped
+    hostname: qdrant
+    # environment:
+    #   QDRANT__SERVICE__API_KEY: 69745b10-e341-11ef-9f72-37374b5983cd
+    # ports so we can use the web ui
+    ports:
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
+    volumes:
+      - qdrant:/qdrant/storage
+
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    pull_policy: always
+    hostname: openwebui
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    environment:
+      ENV: dev
+      OLLAMA_BASE_URL: http://ollama:11434
+
+  # Maybe one day this will work...
+  # for now we need to start this from the command line
+  # podman run -d --gpus=all --replace -v ~/ollama/.ollama:/root/.ollama -p 127.0.0.1:11434:11434 --name ollama docker.io/ollama/ollama
+  # Run this with podman-compose v1.2 not podman compose
+  ollama:
+    hostname: ollama
+    image: docker.io/ollama/ollama
+    # ports:
+    #   - "127.0.0.1:11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    volumes:
+    - /home/respondo/ollama/.ollama:/root/.ollama
+    environment:
+      - OLLAMA_NUM_PARALLEL=10
+      - OLLAMA_MAX_QUEUE=10
+
+  redis:
+    # container_name: redis
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save 30 1 --loglevel warning
+    restart: unless-stopped
+    hostname: redis
+    volumes:
+      - redis-data:/data
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  searxng:
+    # container_name: searxng
+    # When setting up openwebui - use http://searxng:8080
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    hostname: searxng
+    ports:
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
+      - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+volumes:
+  langflow-postgres:
+  langflow-data:
+  qdrant:
+  open-webui:
+  redis-data:
