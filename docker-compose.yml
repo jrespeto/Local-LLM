@@ -61,7 +61,8 @@ services:
   # Run this with podman-compose v1.2 not podman compose
   ollama:
     hostname: ollama
-    image: docker.io/ollama/ollama
+    image: docker.io/ollama/ollama:latest
+    pull_policy: always
     # ports:
     #   - "127.0.0.1:11434:11434"
     deploy:
