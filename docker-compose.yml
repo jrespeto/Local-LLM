@@ -79,7 +79,7 @@ services:
               capabilities:
                 - gpu
     volumes:
-    - /home/respondo/ollama/.ollama:/root/.ollama
+    - ~/ollama/.ollama:/root/.ollama
     environment:
       - OLLAMA_NUM_PARALLEL=10
       - OLLAMA_MAX_QUEUE=10
