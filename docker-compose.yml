@@ -79,7 +79,11 @@ services:
               capabilities:
                 - gpu
     volumes:
+<<<<<<< HEAD
     - ollama:/root/.ollama
+=======
+    - ${HOME}/ollama/.ollama:/root/.ollama
+>>>>>>> 6acaeca882024bcd9230c4c5afce185a9833509d
     environment:
       - OLLAMA_NUM_PARALLEL=10
       - OLLAMA_MAX_QUEUE=10
