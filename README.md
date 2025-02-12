@@ -54,10 +54,7 @@ To working with volums from the containers
 
 You may need to update the FROM line in docker/dockerfile.comfyui for your systems version of cuda.
 
-Watch these on how to use ComfyUI - set the play speep to 1.5 :)
-
-- https://www.youtube.com/watch?v=Z914egVyXBw
-- https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0
+Watch the youtube links below on how to setup and use ComfyUI. Set the play speep to 1.5 :)
 
 ### openwebui
 
@@ -73,4 +70,13 @@ If you update the "ComfyUI Workflow" you need to updated the "ComfyUI Workflow N
 
 i.e - node 3 is the object with seed and steps
 
-You also need to set a default Model. Watch the video's and playlist above to understand which models "depending on  the ammount of vram on your GPU" and settings to use.
+You also need to set a default Model. Watch the video's and playlist below to understand which models "depending on  the ammount of vram on your GPU" and settings to use.
+
+#### References Repos
+
+- https://github.com/Teachings/AIServerSetup
+
+#### Reference Youtube
+
+- https://www.youtube.com/watch?v=Z914egVyXBw
+- https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0
