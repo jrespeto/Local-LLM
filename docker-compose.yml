@@ -87,6 +87,8 @@ services:
 
   comfyui:
     hostname: comfyui
+    profiles:
+      - comfyui
     build:
       context: .
       dockerfile: docker/dockerfile.comfyui

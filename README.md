@@ -34,6 +34,10 @@ To start the containers
 
 `podman-compose up -d`
 
+To start up the containers and comfyui
+
+`podman-compose --profile comfyui up -d`
+
 To follow the logs
 
 `podman-compose logs --follow`
