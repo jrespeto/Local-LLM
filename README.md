@@ -14,19 +14,21 @@ docker-compose with podman does not pass the GPU to the container
 
 This compose has 8 containers.
 
-openWebUI - API's to ollama and
+[openWebUI](https://docs.openwebui.com) - API's to ollama and
 
-ollama - LLM management
+[ollama](https://ollama.com) - LLM management
 
-qdrant
+[qdrant](https://qdrant.tech) - Vector store and AI RAGs
 
-Langflow
-    postgresql
+[Langflow](https://langflow.org) - low code framwork to build AI workflows and agents
 
-searxng - local search engin aggrator
-    valkey
+[postgresql](https://www.postgresql.org/) - DB dep for Langflow
 
-comfyui - image generation
+[searxng](https://docs.searxng.org) - local internet metasearch engine
+
+[valkey](https://valkey.io/) - redis cache dep for searxng
+
+[comfyui](https://comfy.org) - image generation flamwork
 
 ---
 
