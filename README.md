@@ -1,4 +1,4 @@
-# RAG_Local LLM
+# Local LLM
 
 To run this on as system with a GPU, you need the container tool kit installed on your system. Review the podman doc link below.
 
@@ -10,7 +10,7 @@ podman-compose version >= 1.2.0
 
 docker-compose with podman does not pass the GPU to the container
 
-## Running
+## Tech Stack
 
 This compose has 8 containers.
 
@@ -31,6 +31,8 @@ This compose has 8 containers.
 [comfyui](https://comfy.org) - image generation flamwork
 
 ---
+
+## Running
 
 To start the containers
 
