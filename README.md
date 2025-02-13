@@ -1,6 +1,6 @@
 # RAG_Local LLM
 
-To run this working on a system with a GPU you need the container tool kit installed on your system. Review the podman doc link below.
+To run this on as system with a GPU, you need the container tool kit installed on your system. Review the podman doc link below.
 
 Before using podman make sure containers have GPU access.
 
@@ -36,7 +36,7 @@ To start the containers
 
 To start up the containers and comfyui
 
-`podman-compose --profile comfyui up -d`
+`podman-compose --profile comfyui up -d`s
 
 To follow the logs
 
