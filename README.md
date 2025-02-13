@@ -1,6 +1,6 @@
 # RAG_Local LLM
 
-To run have on a system with a GPU
+To run this working on a system with a GPU you need the container tool kit installed on your system. Review the podman doc link below.
 
 Before using podman make sure containers have GPU access.
 
