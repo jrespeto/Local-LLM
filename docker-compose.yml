@@ -107,6 +107,7 @@ services:
     - comfyui-output:/app/output
     - comfyui-models:/app/models
     - comfyui-custom_nodes:/app/custom_nodes
+    - comfyui-styles:/app/styles
 
   redis:
     # container_name: redis
@@ -164,3 +165,4 @@ volumes:
   comfyui-models:
   comfyui-custom_nodes:
   comfyui-output:
+  comfyui-styles:
