@@ -25,6 +25,10 @@ Use WSL to run podman. I recommend using Ubuntu 24.04.
 
 Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 
+Accessing the volumes from Windows is a bit tricky. You can use Explore to find the volumes under Linux on the left side of the window and browse the WSL filesystem for Ubuntu-24.04.
+
+Volume are in the following path in the WSL filesystem. `/home/USERNAME/.local/share/containers/storage/volumes/VOLUME-NAME` Where `USERNAME` is your Windows username and `VOLUME-NAME` is the name of the volume.
+
 ```bash
 wsl -d Ubuntu-24.04
 ```
@@ -127,7 +131,20 @@ To working with volums from the containers
 
 You may need to update the FROM line in docker/dockerfile.comfyui for your systems version of cuda.
 
-Watch the youtube links below on how to setup and use ComfyUI. Set the play speep to 1.5 :)
+Watch the youtube links below on how to setup and use ComfyUI.
+
+The entrypoint for comfyui installs a few custom nodes listed below.
+
+- ComfyUI-Manager
+- ComfyUI-GGUF
+- was-node-suite-comfyui
+- ComfyUI-Easy-Use
+- comfyui-ollama
+- ComfyUI-Crystools
+- rgthree-comfy
+- ComfyUI_UltimateSDUpscale
+- comfyui_controlnet_aux
+- ComfyUI_Comfyroll_CustomNodes
 
 ### openwebui
 
@@ -145,11 +162,7 @@ i.e - node 3 is the object with seed and steps
 
 You also need to set a default Model. Watch the video's and playlist below to understand which models "depending on  the ammount of vram on your GPU" and settings to use.
 
-#### References Repos
-
-- https://github.com/Teachings/AIServerSetup
-
 #### Reference Youtube
 
-- https://www.youtube.com/watch?v=Z914egVyXBw
-- https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0
+- [pixaroma](https://www.youtube.com/@pixaroma)
+- [ComfyUI Tutorial Series](https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0)

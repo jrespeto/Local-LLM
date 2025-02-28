@@ -67,7 +67,7 @@ pip install -r /app/custom_nodes/ComfyUI-Easy-Use/requirements.txt
 if [ ! -d "/app/custom_nodes/comfyui-ollama" ]; then
     git clone --depth 1 https://github.com/stavsap/comfyui-ollama.git /app/custom_nodes/comfyui-ollama
 else
-    cd /app/custom_nodes/ComfyUI-Easy-Use
+    cd /app/custom_nodes/comfyui-ollama
     git pull
     cd -
 fi
