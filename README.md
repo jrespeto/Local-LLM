@@ -30,14 +30,21 @@ Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 To install Ubuntu 24.04 in a wsl, run the following command. In a power shell or cmd terminal as an administrator run the following command.
 
 ```bash
-wsl --install -d Ubuntu-24.04
+wsl --install --name local-llm -d Ubuntu-24.04
 ```
 
 To start Ubuntu 24.04 run the following command.
 
 ```bash
-wsl -d Ubuntu-24.04
+wsl -d local-llm
 ```
+
+> [!WARNING]
+> If you want to remove the Ubuntu 24.04 distribution run the following command.
+>
+> ```bash
+> wsl --unregister local-llm
+> ```
 
 Accessing the volumes from Windows is a bit tricky. You can use Explore to find the volumes under Linux on the left side of the window and browse the WSL filesystem for Ubuntu-24.04.
 
