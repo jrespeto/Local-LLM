@@ -17,7 +17,7 @@ services:
       - langflow-data:/app/langflow
 
   postgres:
-    image: postgres:16
+    image: docker.io/postgres:16
     restart: unless-stopped
     hostname: postgres
     environment:
@@ -30,7 +30,7 @@ services:
       - langflow-postgres:/var/lib/postgresql/data
 
   qdrant:
-    image: qdrant/qdrant
+    image: docker.io/qdrant/qdrant
     restart: unless-stopped
     hostname: qdrant
     # environment:

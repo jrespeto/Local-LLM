@@ -1,6 +1,6 @@
 # Local LLM
 
-To run this, you need a system with a GPU, and container tool kit packages installed on your system. Review the podman doc link below.
+To use this repo, you need a system with a GPU, podman and nvidia container toolkit packages installed on your system. Review the podman documentation links below.
 
 ## Testing your system
 
@@ -39,6 +39,8 @@ The version of podman-compose in the Ubuntu 24.04 repo is 1.0.6 and does not wor
 You also need to install python3-dotenv and the nvidia-container-toolkit using the following commands.
 
 ```bash
+
+sudo su -
 # podman-compose
 curl -o /usr/local/bin/podman-compose https://raw.githubusercontent.com/containers/podman-compose/main/podman_compose.py
 chmod +x /usr/local/bin/podman-compose
@@ -52,6 +54,9 @@ apt update && apt install -y nvidia-container-toolkit python3-dotenv
 # generate cdi yaml file for the GPU
 nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
 nvidia-ctk cdi list
+
+# logout of root
+exit
 ```
 
 #### Test NVIDIA GPU
