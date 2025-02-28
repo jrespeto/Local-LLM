@@ -31,6 +31,14 @@ Accessing the volumes from Windows is a bit tricky. You can use Explore to find 
 
 Volume are in the following path in the WSL filesystem. `/home/USERNAME/.local/share/containers/storage/volumes/VOLUME-NAME` Where `USERNAME` is your Windows username and `VOLUME-NAME` is the name of the volume.
 
+To install Ubuntu 24.04 in a wsl, run the following command. In a power shell or cmd terminal as an administrator run the following command.
+
+```bash
+wsl --install -d Ubuntu-24.04
+```
+
+To start Ubuntu 24.04 run the following command.
+
 ```bash
 wsl -d Ubuntu-24.04
 ```
