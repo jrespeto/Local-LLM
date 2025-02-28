@@ -1,6 +1,10 @@
 
 services:
   langflow:
+    hostname: langflow
+    profiles:
+      - langflow
+      - all
     image: docker.io/langflowai/langflow:latest
     pull_policy: always
     restart: unless-stopped
@@ -20,6 +24,9 @@ services:
     image: docker.io/postgres:16
     restart: unless-stopped
     hostname: postgres
+    profiles:
+      - langflow
+      - all
     environment:
       POSTGRES_USER: langflow
       POSTGRES_PASSWORD: langflow
@@ -33,6 +40,10 @@ services:
     image: docker.io/qdrant/qdrant
     restart: unless-stopped
     hostname: qdrant
+    profiles:
+      - langflow
+      - openwebui
+      - all
     # environment:
     #   QDRANT__SERVICE__API_KEY: 69745b10-e341-11ef-9f72-37374b5983cd
     # ports so we can use the web ui
@@ -47,6 +58,10 @@ services:
     restart: unless-stopped
     pull_policy: always
     hostname: openwebui
+    profiles:
+      - langflow
+      - openwebui
+      - all
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
@@ -67,6 +82,11 @@ services:
   # Run this with podman-compose v1.2 not podman compose
   ollama:
     hostname: ollama
+    profiles:
+      - langflow
+      - ollama
+      - openwebui
+      - all
     image: docker.io/ollama/ollama:latest
     pull_policy: always
     # ports:
@@ -83,6 +103,7 @@ services:
     hostname: comfyui
     profiles:
       - comfyui
+      - all
     build:
       context: .
       dockerfile: docker/dockerfile.comfyui
@@ -100,6 +121,10 @@ services:
     command: valkey-server --save 30 1 --loglevel warning
     restart: on-failure
     hostname: redis
+    profiles:
+      - searxng
+      - openwebui
+      - all
     volumes:
       - redis-data:/data
     cap_drop:
@@ -120,6 +145,10 @@ services:
     image: docker.io/searxng/searxng:latest
     restart: unless-stopped
     hostname: searxng
+    profiles:
+      - searxng
+      - openwebui
+      - all
     ports:
       - "127.0.0.1:8082:8080"
     volumes:
@@ -142,6 +171,8 @@ services:
 
   nvidia:
     hostname: nvidia
+    profiles:
+      - test
     image: docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04
     pull_policy: always
     command: nvidia-smi
