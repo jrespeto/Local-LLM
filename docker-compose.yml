@@ -86,6 +86,7 @@ services:
       - langflow
       - ollama
       - openwebui
+      - comfyui
       - all
     image: docker.io/ollama/ollama:latest
     pull_policy: always
