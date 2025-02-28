@@ -27,14 +27,6 @@ Use WSL to run podman. I recommend using Ubuntu 24.04.
 
 Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 
-Accessing the volumes from Windows is a bit tricky. You can use Explore to find the volumes under Linux on the left side of the window and browse the WSL filesystem for Ubuntu-24.04.
-
-![alt text](docs/images/image1.png)
-
-Volume are in the following path in the WSL filesystem. `/home/USERNAME/.local/share/containers/storage/volumes/VOLUME-NAME` Where `USERNAME` is your Windows username and `VOLUME-NAME` is the name of the volume.
-
-![alt text](docs/images/image2.png)
-
 To install Ubuntu 24.04 in a wsl, run the following command. In a power shell or cmd terminal as an administrator run the following command.
 
 ```bash
@@ -46,6 +38,14 @@ To start Ubuntu 24.04 run the following command.
 ```bash
 wsl -d Ubuntu-24.04
 ```
+
+Accessing the volumes from Windows is a bit tricky. You can use Explore to find the volumes under Linux on the left side of the window and browse the WSL filesystem for Ubuntu-24.04.
+
+![alt text](docs/images/image1.png)
+
+Volume are in the following path in the WSL filesystem. `/home/USERNAME/.local/share/containers/storage/volumes/VOLUME-NAME` Where `USERNAME` is your Windows username and `VOLUME-NAME` is the name of the volume.
+
+![alt text](docs/images/image2.png)
 
 Clone the repo
 
@@ -64,10 +64,10 @@ curl -o /usr/local/bin/podman-compose https://raw.githubusercontent.com/containe
 chmod +x /usr/local/bin/podman-compose
 
 # nvidia-container-toolkit repo
-curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 # installing nvidia-container-toolkit and python3-dotenv
-apt update && apt install -y nvidia-container-toolkit python3-dotenv
+apt update && apt install -y nvidia-container-toolkit python3-dotenv podman
 
 # generate cdi yaml file for the GPU
 nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
@@ -120,9 +120,11 @@ To start all the containers, run the following command: --profile all
 
 ## Running
 
-To start the containers without comfyui
+To start the containers with the profile of the app or all apps
 
-`podman-compose up -d`
+`podman-compose --profile openwebui --profile langflow up -d`
+
+`podman-compose --profile all up -d`
 
 To start up the containers and comfyui
 
