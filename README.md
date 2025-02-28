@@ -29,7 +29,11 @@ Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 
 Accessing the volumes from Windows is a bit tricky. You can use Explore to find the volumes under Linux on the left side of the window and browse the WSL filesystem for Ubuntu-24.04.
 
+![alt text](docs/images/image1.png)
+
 Volume are in the following path in the WSL filesystem. `/home/USERNAME/.local/share/containers/storage/volumes/VOLUME-NAME` Where `USERNAME` is your Windows username and `VOLUME-NAME` is the name of the volume.
+
+![alt text](docs/images/image2.png)
 
 To install Ubuntu 24.04 in a wsl, run the following command. In a power shell or cmd terminal as an administrator run the following command.
 
