@@ -28,7 +28,10 @@ RUN pip install -r requirements.txt
 # Expose the port used by ComfyUI
 EXPOSE 8188
 
-COPY src/entrypoint.sh /
+# This is move to /app/styles in the entrypoint.sh script after the volumes are mounted
+COPY docker/comfyui/src/styles.csv .
+
+COPY docker/comfyui/src/entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh
 
