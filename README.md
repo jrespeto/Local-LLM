@@ -21,7 +21,7 @@ docker-compose with podman does not pass the GPU to the container.
 
 ---
 
-### Windows Setup
+## Windows Setup
 
 Use WSL to run podman. I recommend using Ubuntu 24.04.
 
@@ -65,7 +65,7 @@ nvidia-ctk cdi list
 exit
 ```
 
-#### Test NVIDIA GPU
+### Test NVIDIA GPU
 
 Inside the WSL environment, run the following command to test the NVIDIA GPU:
 
@@ -73,7 +73,7 @@ Inside the WSL environment, run the following command to test the NVIDIA GPU:
 podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04 nvidia-smi
 ```
 
-#### Running the Compose File
+### Running the Compose File
 
 To start the containers with the below command in the [Running](#running) section in the WSL environment.
 
@@ -150,7 +150,7 @@ The entrypoint for comfyui installs a few custom nodes listed below.
 - comfyui_controlnet_aux
 - ComfyUI_Comfyroll_CustomNodes
 
-### openwebui
+## openwebui
 
 This will allow you to use comfyui to generate images with a default workflow.
 
@@ -166,7 +166,7 @@ i.e - node 3 is the object with seed and steps
 
 You also need to set a default Model. Watch the video's and playlist below to understand which models "depending on  the ammount of vram on your GPU" and settings to use.
 
-#### Reference Youtube
+### Reference Youtube
 
 - [pixaroma](https://www.youtube.com/@pixaroma)
 - [ComfyUI Tutorial Series](https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0)
