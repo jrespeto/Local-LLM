@@ -19,6 +19,8 @@ https://github.com/containers/podman-compose#installation
 
 docker-compose with podman does not pass the GPU to the container.
 
+---
+
 ### Windows Setup
 
 Use WSL to run podman. I recommend using Ubuntu 24.04.
@@ -74,6 +76,8 @@ podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime
 #### Running the Compose File
 
 To start the containers with the below command in the [Running](#running) section in the WSL environment.
+
+---
 
 ## Tech Stack
 
