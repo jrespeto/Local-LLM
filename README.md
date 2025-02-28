@@ -67,35 +67,43 @@ Inside the WSL environment, run the following command to test the NVIDIA GPU:
 podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04 nvidia-smi
 ```
 
+#### Running the Compose File
+
+To start the containers with the below command in the [Running](##Running) section in the WSL environment.
+
 ## Tech Stack
 
 This compose has 8 containers.
 
-[openWebUI](https://docs.openwebui.com) - API's to ollama and
-
-[ollama](https://ollama.com) - LLM management
-
-[qdrant](https://qdrant.tech) - Vector store and AI RAGs
-
-[Langflow](https://langflow.org) - low code framwork to build AI workflows and agents
-
-[postgresql](https://www.postgresql.org/) - DB dep for Langflow
-
-[searxng](https://docs.searxng.org) - local internet metasearch engine
-
-[valkey](https://valkey.io/) - redis cache dep for searxng
-
-[comfyui](https://comfy.org) - image generation flamwork
-
+- [openWebUI](https://docs.openwebui.com) - chatbot/ API's to ollama
+  - [localhost:8080](http://localhost:8080)
+- [ollama](https://ollama.com) - LLM management
+  - no ui ollama:11434
+- [qdrant](https://qdrant.tech) - Vector store and AI RAGs
+  - [localhost:6333](http://localhost:6333)
+- [Langflow](https://langflow.org) - low code framwork to build AI workflows and agents
+  - [localhost:7860](http://localhost:7860)
+- [postgresql](https://www.postgresql.org/) - DB dep for Langflow
+  - no ui postgres:5432
+- [searxng](https://docs.searxng.org) - local internet metasearch engine
+  - [localhost:8082](http://localhost:8082)
+- [valkey](https://valkey.io/) - redis cache dep for searxng
+  - no ui valkey:6379
+- [comfyui](https://comfy.org) - image generation flamwork
+  - [localhost:8188](http://localhost:8188)
 ---
 
 ## Running
 
-To start the containers
+To start the containers without comfyui
 
 `podman-compose up -d`
 
 To start up the containers and comfyui
+
+First build the comfyui container
+
+`podman-compose --profile comfyui build`
 
 `podman-compose --profile comfyui up -d`
 
