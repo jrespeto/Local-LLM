@@ -104,10 +104,7 @@ services:
               capabilities:
                 - gpu
     volumes:
-    - comfyui-output:/app/output
-    - comfyui-models:/app/models
-    - comfyui-custom_nodes:/app/custom_nodes
-    - comfyui-styles:/app/styles
+    - comfyui:/comfyui
 
   redis:
     # container_name: redis
@@ -162,7 +159,4 @@ volumes:
   open-webui:
   redis-data:
   ollama:
-  comfyui-models:
-  comfyui-custom_nodes:
-  comfyui-output:
-  comfyui-styles:
+  comfyui:
