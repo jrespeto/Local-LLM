@@ -93,7 +93,7 @@ fi
 
 pip install -r /app/custom_nodes/rgthree-comfy/requirements.txt
 
-if [ ! -d "" ]; then
+if [ ! -d "/app/custom_nodes/ComfyUI_UltimateSDUpscale" ]; then
     git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive /app/custom_nodes/ComfyUI_UltimateSDUpscale
 else
     cd /app/custom_nodes/ComfyUI_UltimateSDUpscale
