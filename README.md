@@ -69,7 +69,7 @@ podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime
 
 #### Running the Compose File
 
-To start the containers with the below command in the [Running](##running) section in the WSL environment.
+To start the containers with the below command in the [Running](#running) section in the WSL environment.
 
 ## Tech Stack
 
