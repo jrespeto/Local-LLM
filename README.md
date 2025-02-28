@@ -5,10 +5,10 @@ To run this, you need a system with a GPU, and container tool kit packages insta
 ## Testing your system
 
 Before starting make sure podman containers have GPU access.
-Follow the instruction from the link below.
+Follow the instruction from the links below.
 
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 https://podman-desktop.io/docs/podman/gpu
-
 
 You also need to use `podman-compose` not `docker-compose`
 
@@ -18,11 +18,48 @@ https://github.com/containers/podman-compose#installation
 
 docker-compose with podman does not pass the GPU to the container.
 
-### Windows users
+### Windows Setup
 
-Use WSL to start podman.
+Use WSL to run podman. I recommend using Ubuntu 24.04.
 
+Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 
+```bash
+wsl -d Ubuntu-24.04
+```
+
+Clone the repo
+
+```bash
+git clone https://github.com/jrespeto/Local-LLM.git
+```
+
+The version of podman-compose in the Ubuntu 24.04 repo is 1.0.6 and does not work with this compose file. You need to install the latest version of podman-compose from github using the following command as mentioned above.
+You also need to install python3-dotenv and the nvidia-container-toolkit using the following commands.
+
+```bash
+# podman-compose
+curl -o /usr/local/bin/podman-compose https://raw.githubusercontent.com/containers/podman-compose/main/podman_compose.py
+chmod +x /usr/local/bin/podman-compose
+
+# nvidia-container-toolkit repo
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+# installing nvidia-container-toolkit and python3-dotenv
+apt update && apt install -y nvidia-container-toolkit python3-dotenv
+
+# generate cdi yaml file for the GPU
+nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+nvidia-ctk cdi list
+```
+
+#### Test NVIDIA GPU
+
+Inside the WSL environment, run the following command to test the NVIDIA GPU:
+
+```bash
+podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04 nvidia-smi
+```
 
 ## Tech Stack
 
@@ -54,7 +91,7 @@ To start the containers
 
 To start up the containers and comfyui
 
-`podman-compose --profile comfyui up -d`s
+`podman-compose --profile comfyui up -d`
 
 To follow the logs
 
