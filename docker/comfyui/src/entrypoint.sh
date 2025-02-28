@@ -94,14 +94,12 @@ fi
 pip install -r /app/custom_nodes/rgthree-comfy/requirements.txt
 
 if [ ! -d "" ]; then
-    git clone --depth 1 https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git /app/custom_nodes/ComfyUI_UltimateSDUpscale
+    git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive /app/custom_nodes/ComfyUI_UltimateSDUpscale
 else
     cd /app/custom_nodes/ComfyUI_UltimateSDUpscale
     git pull
     cd -
 fi
-
-pip install -r /app/custom_nodes/ComfyUI_UltimateSDUpscale/requirements.txt
 
 if [ ! -d "/app/custom_nodes/comfyui_controlnet_aux" ]; then
     git clone --depth 1 https://github.com/Fannovel16/comfyui_controlnet_aux.git /app/custom_nodes/comfyui_controlnet_aux
