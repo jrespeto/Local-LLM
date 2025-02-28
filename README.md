@@ -1,14 +1,28 @@
 # Local LLM
 
-To run this on as system with a GPU, you need the container tool kit installed on your system. Review the podman doc link below.
+To run this, you need a system with a GPU, and container tool kit packages installed on your system. Review the podman doc link below.
 
-Before using podman make sure containers have GPU access.
+## Testing your system
+
+Before starting make sure podman containers have GPU access.
+Follow the instruction from the link below.
 
 https://podman-desktop.io/docs/podman/gpu
 
+
+You also need to use `podman-compose` not `docker-compose`
+
 podman-compose version >= 1.2.0
 
-docker-compose with podman does not pass the GPU to the container
+https://github.com/containers/podman-compose#installation
+
+docker-compose with podman does not pass the GPU to the container.
+
+### Windows users
+
+Use WSL to start podman.
+
+
 
 ## Tech Stack
 
