@@ -23,7 +23,14 @@ docker-compose with podman does not pass the GPU to the container.
 
 ## Windows Setup
 
-Use WSL to run podman. I recommend using Ubuntu 24.04.
+Use WSL2 to run podman. I recommend using Ubuntu 24.04.
+
+To install WSL2 run the following command in a power shell or cmd terminal as an administrator.
+This will also install a Ubuntu vm.
+
+```bash
+wsl --install
+```
 
 Open a new WSL terminal and run the following command to start Ubuntu 24.04.
 
