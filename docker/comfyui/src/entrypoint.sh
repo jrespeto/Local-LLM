@@ -4,12 +4,16 @@
 cd /app
 
 rm -rf /app/output
-rm -rf /app/models
 rm -rf /app/custom_nodes
 rm -rf /app/styles
 rm -rf /app/user
 
 mkdir -p /comfyui/output /comfyui/models /comfyui/custom_nodes /comfyui/styles /comfyui/user
+
+# if /comfyui/models is empty cp /app/models to /comfyui/models
+if [ -z "$(ls -A '/comfyui/models')" ]; then
+    cp -a /app/models/* /comfyui/models/
+fi
 
 ln -s /comfyui/output /app/output
 ln -s /comfyui/models /app/models
@@ -17,7 +21,10 @@ ln -s /comfyui/custom_nodes /app/custom_nodes
 ln -s /comfyui/styles /app/styles
 ln -s /comfyui/user /app/user
 
-mv /app/styles.csv /app/styles/
+# if /app/styles/styles.csv copy it over
+if [ ! -f '/app/styles/styles.csv' ]; then
+    cp /app/styles.csv /app/styles/
+fi
 
 # Clone or update
 if [ ! -d "/app/custom_nodes/ComfyUI-Manager" ]; then
