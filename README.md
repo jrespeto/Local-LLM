@@ -219,12 +219,12 @@ The `entrypoint.sh` for comfyui installs a few custom nodes listed below. Mostly
 > TODO: add links to video next to node.
 
 - ComfyUI-Manager [EP.01](https://www.youtube.com/watch?v=Zko_s2LO9Wo)
-- ComfyUI-GGUF
 - was-node-suite-comfyui [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 - ComfyUI-Easy-Use [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
-- comfyui-ollama
-- ComfyUI-Crystools
-- rgthree-comfy
+- ComfyUI-GGUF [EP.10](https://www.youtube.com/watch?v=Ym0oJpRbj4U)
+- ComfyUI-Crystools [EP.10](https://www.youtube.com/watch?v=Ym0oJpRbj4U)
+- rgthree-comfy [EP.10](https://www.youtube.com/watch?v=Ym0oJpRbj4U)
+- comfyui-ollama [EP.13](https://www.youtube.com/watch?v=eK6MXm7q37)
 - ComfyUI_UltimateSDUpscale
 - comfyui_controlnet_aux
 - ComfyUI_Comfyroll_CustomNodes
