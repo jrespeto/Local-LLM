@@ -216,10 +216,10 @@ The `entrypoint.sh` for comfyui installs a few custom nodes listed below. Mostly
 > The 300+ Art styles are added here from [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 
 > [!NOTE]
-> add links to video next to node.
+> TODO: add links to video next to node.
 
-- ComfyUI-Manager - [EP.01](https://www.youtube.com/watch?v=Zko_s2LO9Wo)
-- ComfyUI-GGUF -
+- ComfyUI-Manager [EP.01](https://www.youtube.com/watch?v=Zko_s2LO9Wo)
+- ComfyUI-GGUF
 - was-node-suite-comfyui [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 - ComfyUI-Easy-Use [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 - comfyui-ollama
