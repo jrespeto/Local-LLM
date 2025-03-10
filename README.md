@@ -212,10 +212,10 @@ I do recommend joining the [Pixaroma Discord](https://discord.gg/arycS8aq)
 
 The `entrypoint.sh` for comfyui installs a few custom nodes listed below. Mostly from me following along the [ComfyUI Tutorial Series](https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0) from [pixaroma](https://www.youtube.com/@pixaroma).
 
-> ![NOTE]
+> [!NOTE]
 > The 300+ Art styles are added here from [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 
-> ![note]
+> [!NOTE]
 > add links to video next to node.
 
 - ComfyUI-Manager - [EP.01](https://www.youtube.com/watch?v=Zko_s2LO9Wo)
