@@ -47,7 +47,7 @@ wsl -d local-llm
 ```
 
 > [!WARNING]
-> If you want to remove the Ubuntu 24.04 distribution run the following command.
+> If you want to remove / uninstall the Ubuntu 24.04 distribution run the following command. This will also remove the volumes and any data / models.
 >
 > ```bash
 > wsl --unregister local-llm
@@ -69,6 +69,9 @@ git clone https://github.com/jrespeto/Local-LLM.git
 
 The version of podman-compose in the Ubuntu 24.04 repo is 1.0.6 and does not work with this compose file. You need to install the latest version of podman-compose from github using the following command as mentioned above.
 You also need to install python3-dotenv and the nvidia-container-toolkit using the following commands.
+
+> [!WARNING]
+> When updating your system drivers, you may need to regenerate the nvidia.yaml by rerunning the `nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml` below.
 
 ```bash
 
@@ -97,6 +100,41 @@ Inside the WSL environment, run the following command to test the NVIDIA GPU:
 
 ```bash
 podman run --rm --device nvidia.com/gpu=all docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04 nvidia-smi
+```
+
+It should output data like this show details about your GPU.
+
+```bash
+Trying to pull docker.io/nvidia/cuda:12.8.0-base-ubuntu20.04...
+Getting image source signatures
+Copying blob 4b650590013c skipped: already exists
+Copying blob d9802f032d67 skipped: already exists
+Copying blob b4aeb03891f2 done   |
+Copying blob a8163c471214 done   |
+Copying blob e43bfa99a834 done   |
+Copying config dd22839602 done   |
+Writing manifest to image destination
+Mon Mar 10 13:52:08 2025
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.124.06             Driver Version: 570.124.06     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4070 ...    Off |   00000000:01:00.0 Off |                  N/A |
+| N/A   51C    P8              2W /   35W |      16MiB /   8188MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
 ```
 
 ### Running the Compose File
@@ -170,12 +208,20 @@ You may need to update the FROM line in docker/dockerfile.comfyui for your syste
 
 Watch the youtube links below on how to setup and use ComfyUI.
 
-The entrypoint for comfyui installs a few custom nodes listed below.
+I do recommend joining the [Pixaroma Discord](https://discord.gg/arycS8aq)
 
-- ComfyUI-Manager
-- ComfyUI-GGUF
-- was-node-suite-comfyui
-- ComfyUI-Easy-Use
+The `entrypoint.sh` for comfyui installs a few custom nodes listed below. Mostly from me following along the [ComfyUI Tutorial Series](https://www.youtube.com/playlist?list=PL-pohOSaL8P9kLZP8tQ1K1QWdZEgwiBM0) from [pixaroma](https://www.youtube.com/@pixaroma).
+
+> ![NOTE]
+> The 300+ Art styles are added here from [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
+
+> ![note]
+> add links to video next to node.
+
+- ComfyUI-Manager - [EP.01](https://www.youtube.com/watch?v=Zko_s2LO9Wo)
+- ComfyUI-GGUF -
+- was-node-suite-comfyui [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
+- ComfyUI-Easy-Use [EP.07](https://www.youtube.com/watch?v=Xsx-u0OMezw)
 - comfyui-ollama
 - ComfyUI-Crystools
 - rgthree-comfy
