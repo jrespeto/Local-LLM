@@ -1,5 +1,5 @@
 # Base image with Python 3.11 and CUDA 12.5 support
-FROM docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04
+FROM docker.io/nvidia/cuda:12.8.1-runtime-ubuntu24.04
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \

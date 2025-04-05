@@ -170,6 +170,22 @@ services:
         max-size: "1m"
         max-file: "1"
 
+  facefusion:
+    hostname: facefusion
+    profiles:
+      - facefusion
+      - all
+    build:
+      context: .
+      dockerfile: docker/dockerfile.facefusion
+    command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda' ]
+    volumes:
+    - facefusion:/facefusion
+    ports:
+    - "127.0.0.1:7870:7860"
+    devices:
+      - nvidia.com/gpu=all
+
   nvidia:
     hostname: nvidia
     profiles:
@@ -188,3 +204,4 @@ volumes:
   redis-data:
   ollama:
   comfyui:
+  facefusion:
