@@ -188,9 +188,10 @@ services:
       - facefusion
       - all
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: docker/dockerfile.facefusion
+    image: docker.io/facefusion/facefusion:master-cuda
+    # build:
+    #   context: .
+    #   dockerfile: docker/dockerfile.facefusion
     command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda' ]
     volumes:
     - facefusion:/facefusion
@@ -198,6 +199,26 @@ services:
     - "127.0.0.1:7870:7860"
     devices:
       - nvidia.com/gpu=all
+
+  facefusion-webcam:
+    container_name: facefusion-webcam
+    hostname: facefusion-webcam
+    profiles:
+      - facefusion
+      - all
+    restart: unless-stopped
+    image: docker.io/facefusion/facefusion:master-cuda
+    # build:
+    #   context: .
+    #   dockerfile: docker/dockerfile.facefusion
+    command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda', '--ui-layouts', 'webcam' ]
+    volumes:
+    - facefusion:/facefusion
+    ports:
+    - "127.0.0.1:7871:7860"
+    devices:
+      - nvidia.com/gpu=all
+      - /dev/video0
 
   nvidia:
     hostname: nvidia
