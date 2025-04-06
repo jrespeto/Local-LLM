@@ -1,0 +1,16 @@
+#python
+FROM docker.io/python:slim
+
+ENV VERSION=v2.0.0
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+
+WORKDIR /app
+
+RUN apt-get update; apt-get upgrade -y
+RUN apt-get install git build-essential cmake pkg-config g++ -y
+
+
+RUN git clone https://github.com/e-p-armstrong/augmentoolkit.git --branch ${VERSION} --single-branch .
+RUN pip install -r requirements.txt
+
+CMD streamlit run streamlit_app.py

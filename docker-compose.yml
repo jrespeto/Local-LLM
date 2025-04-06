@@ -220,6 +220,21 @@ services:
       - nvidia.com/gpu=all
       - /dev/video0
 
+  augmentoolkit:
+    container_name: augmentoolkit
+    hostname: augmentoolkit
+    profiles:
+      - augmentoolkit
+      - all
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/dockerfile.augmentoolkit
+    volumes:
+    - augmentoolkit:/app/data
+    ports:
+    - "127.0.0.1:8501:8501"
+
   nvidia:
     hostname: nvidia
     profiles:
@@ -239,3 +254,4 @@ volumes:
   ollama:
   comfyui:
   facefusion:
+  augmentoolkit:
