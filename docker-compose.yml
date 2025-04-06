@@ -1,6 +1,7 @@
 
 services:
   langflow:
+    container_name: langflow
     hostname: langflow
     profiles:
       - langflow
@@ -21,12 +22,14 @@ services:
       - langflow-data:/app/langflow
 
   postgres:
-    image: docker.io/postgres:16
-    restart: unless-stopped
+    container_name: postgres
     hostname: postgres
     profiles:
       - langflow
       - all
+    image: postgres:16
+    pull_policy: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: langflow
       POSTGRES_PASSWORD: langflow
@@ -37,13 +40,15 @@ services:
       - langflow-postgres:/var/lib/postgresql/data
 
   qdrant:
-    image: docker.io/qdrant/qdrant
-    restart: unless-stopped
+    container_name: qdrant
     hostname: qdrant
     profiles:
       - langflow
       - openwebui
       - all
+    image: docker.io/qdrant/qdrant
+    pull_policy: always
+    restart: unless-stopped
     # environment:
     #   QDRANT__SERVICE__API_KEY: 69745b10-e341-11ef-9f72-37374b5983cd
     # ports so we can use the web ui
@@ -54,14 +59,15 @@ services:
       - qdrant:/qdrant/storage
 
   openwebui:
-    image: ghcr.io/open-webui/open-webui:main
-    restart: unless-stopped
-    pull_policy: always
+    container_name: openwebui
     hostname: openwebui
     profiles:
       - langflow
       - openwebui
       - all
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    pull_policy: always
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
@@ -81,6 +87,7 @@ services:
   # podman run -d --gpus=all --replace -v ~/ollama/.ollama:/root/.ollama -p 127.0.0.1:11434:11434 --name ollama docker.io/ollama/ollama
   # Run this with podman-compose v1.2 not podman compose
   ollama:
+    container_name: ollama
     hostname: ollama
     profiles:
       - langflow
@@ -89,6 +96,7 @@ services:
       - comfyui
       - all
     image: docker.io/ollama/ollama:latest
+    restart: unless-stopped
     pull_policy: always
     # ports:
     #   - "127.0.0.1:11434:11434"
@@ -101,6 +109,7 @@ services:
       - OLLAMA_MAX_QUEUE=10
 
   comfyui:
+    container_name: comfyui
     hostname: comfyui
     profiles:
       - comfyui
@@ -108,7 +117,7 @@ services:
     build:
       context: .
       dockerfile: docker/dockerfile.comfyui
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "127.0.0.1:8188:8188"
     devices:
@@ -117,15 +126,16 @@ services:
     - comfyui:/comfyui
 
   redis:
-    # container_name: redis
-    image: docker.io/valkey/valkey:8-alpine
-    command: valkey-server --save 30 1 --loglevel warning
-    restart: on-failure
+    container_name: redis
     hostname: redis
     profiles:
       - searxng
       - openwebui
       - all
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save 30 1 --loglevel warning
+    pull_policy: always
+    restart: unless-stopped
     volumes:
       - redis-data:/data
     cap_drop:
@@ -141,15 +151,16 @@ services:
         max-file: "1"
 
   searxng:
-    # container_name: searxng
+    container_name: searxng
     # When setting up openwebui - use http://searxng:8080
-    image: docker.io/searxng/searxng:latest
-    restart: unless-stopped
-    hostname: searxng
     profiles:
       - searxng
       - openwebui
       - all
+    image: docker.io/searxng/searxng:latest
+    pull_policy: always
+    restart: unless-stopped
+    hostname: searxng
     ports:
       - "127.0.0.1:8082:8080"
     volumes:
@@ -171,10 +182,12 @@ services:
         max-file: "1"
 
   facefusion:
+    container_name: facefusion
     hostname: facefusion
     profiles:
       - facefusion
       - all
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/dockerfile.facefusion
@@ -190,7 +203,7 @@ services:
     hostname: nvidia
     profiles:
       - test
-    image: docker.io/nvidia/cuda:12.8.0-runtime-ubuntu24.04
+    image: docker.io/nvidia/cuda:12.8.1-runtime-ubuntu24.04
     pull_policy: always
     command: nvidia-smi
     devices:
