@@ -1,0 +1,241 @@
+{
+  "models": [
+    {
+      "model": "AUTODETECT",
+      "title": "ollama",
+      "provider": "ollama",
+      "apiBase": "http://localhost:8080/ollama",
+      "requestOptions": {
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR-TOKEN-HERE"
+        }
+      }
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "tabAutocompleteModel",
+    "model": "qwen2.5-coder:7b-base",
+    "provider": "openai",
+    "apiBase": "http://localhost:8080/ollama/v1",
+    "requestOptions": {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR-TOKEN-HERE"
+      }
+    }
+  },
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text:latest",
+    "apiBase": "http://localhost:8080/ollama",
+    "requestOptions": {
+      "headers": {
+        "Authorization": "Bearer YOUR-TOKEN-HERE"
+      }
+    }
+  },
+  "customCommands": [
+    {
+      "name": "check",
+      "description": "Check for mistakes in my code",
+      "prompt": "Please read the highlighted code and check for any mistakes. You should look for the following, and be extremely vigilant:\n- Syntax errors\n- Logic errors\n- Security vulnerabilities\n- Performance issues\n- Anything else that looks wrong\n\nOnce you find an error, please explain it as clearly as possible, but without using extra words. For example, instead of saying 'I think there is a syntax error on line 5', you should say 'Syntax error on line 5'. Give your answer as one bullet point per mistake found."
+    },
+    {
+      "name": "comment",
+      "description": "Write comments for the highlighted code",
+      "prompt": "Please generate concise and meaningful comments to improve the readability and maintainability of the following code. Ensure that each comment adds value and avoids redundancy."
+    },
+    {
+      "name": "docGen",
+      "description": "Generate documentation for highlighted code",
+      "prompt": "Please provide a brief and concise documentation for the following function/class, including its purpose, parameters, return value, and any other relevant information."
+    },
+    {
+      "name": "perfOpt",
+      "description": "Suggest performance optimizations",
+      "prompt": "Please review the highlighted code snippet and provide suggestions for improving its performance, such as optimizing loops, reducing redundant operations, or using more efficient algorithms. Avoid making unnecessary changes unless they significantly improve performance."
+    },
+    {
+      "name": "codeRefactor",
+      "description": "Suggest refactoring ideas to make the code cleaner and more maintainable",
+      "prompt": "Please review the highlighted code snippet and suggest any refactorings that would improve its structure, readability, or maintainability. Focus on extracting functions, improving variable naming, and removing unnecessary complexity where possible."
+    },
+    {
+      "name": "securityCheck",
+      "description": "Check for potential security vulnerabilities in the code",
+      "prompt": "Please review the highlighted code snippet and check for any potential security vulnerabilities or insecure practices, such as hard-coded secrets, improper validation, or other common security issues. Provide detailed explanations if you find any."
+    },
+    {
+      "name": "styleCheck",
+      "description": "Ensure the code adheres to a specific coding standard",
+      "prompt": "Please review the highlighted code snippet and check for compliance with our coding standards, including naming conventions, indentation, spacing, and other stylistic guidelines. Provide suggestions for any deviations from these rules."
+    },
+    {
+      "name": "unitTestGen",
+      "description": "Generate unit tests for the given piece of code",
+      "prompt": "Please generate unit tests for the following function/class. Ensure that the tests cover a wide range of scenarios, including edge cases, and verify that they pass successfully."
+    },
+    {
+      "name": "testStrategy",
+      "description": "Suggest a testing strategy for the given piece of code",
+      "prompt": "Please review the highlighted code snippet and suggest an appropriate test strategy to ensure its correctness, including unit tests, integration tests, or other relevant types. Include any specific edge cases that should be tested."
+    },
+    {
+      "name": "codeReview",
+      "description": "Provide a comprehensive review of the highlighted code",
+      "prompt": "Please provide a detailed review of the following code, covering aspects such as functionality, performance, security, and maintainability. Suggest improvements where necessary and explain your reasoning for each suggestion."
+    },
+    {
+      "name": "dependencyCheck",
+      "description": "Identify any potential issues with dependencies in the code",
+      "prompt": "Please review the highlighted code snippet and identify any dependencies that may cause conflicts or security risks. Suggest alternatives if possible and explain why they are better choices."
+    },
+    {
+      "name": "errorHandling",
+      "description": "Improve error handling in the code",
+      "prompt": "Please review the highlighted code snippet and suggest improvements to its error handling mechanisms. Ensure that errors are properly caught, logged, and handled to prevent application crashes or data loss."
+    },
+    {
+      "name": "codeOptimize",
+      "description": "Optimize code for internationalization",
+      "prompt": "Please review the highlighted code snippet and suggest improvements to make it more suitable for internationalization. This includes using locale-aware functions, avoiding hardcoded strings, and ensuring proper support for different character sets."
+    },
+    {
+      "name": "debuggingHints",
+      "description": "Provide debugging hints for the given piece of code",
+      "prompt": "Please review the highlighted code snippet and suggest potential issues that might cause bugs or unexpected behavior. Provide step-by-step debugging hints to help identify and resolve these problems."
+    },
+    {
+      "name": "techDocUpdate",
+      "description": "Update technical documentation based on new code changes",
+      "prompt": "Please review the highlighted code snippet and update the relevant technical documentation to reflect any changes in functionality, parameters, or behavior. Ensure that the documentation remains accurate and up-to-date."
+    },
+    {
+      "name": "summarize",
+      "description": "Summarize the provided text",
+      "prompt": "Please provide a concise summary of the following text, capturing the main points and key information."
+    },
+    {
+      "name": "keywordExtraction",
+      "description": "Extract key words and phrases from the provided text",
+      "prompt": "Please extract the most important keywords and phrases from the following text. List them in order of significance."
+    },
+    {
+      "name": "sentimentAnalysis",
+      "description": "Analyze the sentiment of the provided text",
+      "prompt": "Please analyze the sentiment of the following text and classify it as positive, negative, or neutral."
+    }
+  ],
+  "slashCommands": [
+    {
+      "name": "onboard",
+      "description": "Familiarize yourself with the codebase"
+    },
+    {
+      "name": "cmd",
+      "description": "Generate a shell command"
+    },
+    {
+      "name": "commit",
+      "description": "Generate a commit message for the current changes"
+    },
+    {
+      "name": "share",
+      "description": "Export the current chat session to markdown",
+      "params": {
+        "outputDir": "~/.continue/session-transcripts"
+      }
+    }
+  ],
+  "contextProviders": [
+    {
+      "name": "file"
+    },
+    {
+      "name": "code"
+    },
+    {
+      "name": "diff"
+    },
+    {
+      "name": "terminal"
+    },
+    {
+      "name": "codebase"
+    },
+    {
+      "name": "open",
+      "params": {
+        "onlyPinned": true
+      }
+    },
+    {
+      "name": "folder"
+    },
+    {
+      "name": "search"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "os"
+    },
+    {
+      "name": "problems"
+    },
+    {
+      "name": "repo-map"
+    },
+    {
+      "name": "web",
+      "params": {
+        "n": 10
+      }
+    },
+    {
+      "name": "local",
+      "params": {
+        "stackDepth": 3
+      }
+    },
+    {
+      "name": "docs"
+    }
+  ],
+  "docs": [
+    {
+      "startUrl": "https://techdocs.akamai.com/linode-api/reference/api",
+      "title": "Linode API"
+    },
+    {
+      "startUrl": "https://www.jetify.com/docs/devbox/",
+      "title": "Devbox"
+    },
+    {
+      "startUrl": "https://techdocs.akamai.com/cloud-computing/docs/welcome",
+      "title": "Linode Doc"
+    },
+    {
+      "title": "vllm",
+      "startUrl": "https://docs.vllm.ai/en/latest/"
+    },
+    {
+      "title": "podman",
+      "startUrl": "https://podman.io/docs"
+    },
+    {
+      "title": "openwebui",
+      "startUrl": "https://docs.openwebui.com/"
+    },
+    {
+      "title": "argoCD",
+      "startUrl": "https://argo-cd.readthedocs.io/en/stable/"
+    },
+    {
+      "startUrl": "https://kubernetes.io/docs/home/",
+      "title": "kubernetes"
+    }
+  ]
+}
