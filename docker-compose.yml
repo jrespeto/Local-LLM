@@ -74,6 +74,7 @@ services:
       - open-webui:/app/backend/data
     environment:
       ENV: dev
+      UVICORN_WORKERS: 1
       ENABLE_WEBSOCKET_SUPPORT: true
       USE_CUDA_DOCKER: true
       WEBSOCKET_REDIS_URL: redis://redis:6379/1
@@ -81,6 +82,12 @@ services:
       QDRANT_URI: http://qdrant:6333
       OLLAMA_BASE_URL: http://ollama:11434
       COMFYUI_BASE_URL: http://comfyui:8188
+      ENABLE_WEB_SEARCH: true
+      WEB_SEARCH_RESULT_COUNT: 5
+      WEB_SEARCH_ENGINE: searxng
+      SEARXNG_QUERY_URL: http://searxng:8080/search?q=<query>
+      REDIS_URL: redis://redis:6379/1
+
       # WEBUI_AUTH_TRUSTED_EMAIL_HEADER: x-user-email
       # WEBUI_AUTH_TRUSTED_NAME_HEADER: foo_name
 
@@ -107,12 +114,12 @@ services:
       - nvidia.com/gpu=all
     volumes:
     - ollama:/root/.ollama
-    environment:
-      - OLLAMA_NUM_PARALLEL=10
-      - OLLAMA_MAX_QUEUE=10
-      - OLLAMA_OFFLOAD=all
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
+    # environment:
+    #     - OLLAMA_NUM_PARALLEL=2
+    #     - OLLAMA_MAX_QUEUE=10
+    #     - OLLAMA_OFFLOAD=all
+    #     - NVIDIA_VISIBLE_DEVICES=all
+    #     - NVIDIA_DRIVER_CAPABILITIES=all
 
   comfyui:
     container_name: comfyui
