@@ -155,6 +155,8 @@ To start all the containers, run the following command: --profile all
   - no ui ollama:11434
 - [qdrant](https://qdrant.tech) - Vector store and AI RAGs
   - [localhost:6333](http://localhost:6333)
+- [n8n](https://n8n.io) - workflow automation platform with AI integrations and AI Agents
+  - --profile n8n
 - [Langflow](https://langflow.org) - low code framwork to build AI workflows and agents
   - --profile langflow
   - [localhost:7860](http://localhost:7860)
@@ -168,6 +170,7 @@ To start all the containers, run the following command: --profile all
 - [comfyui](https://comfy.org) - image generation flamwork
   - --profile comfyui
   - [localhost:8188](http://localhost:8188)
+
 ---
 
 ## Running
