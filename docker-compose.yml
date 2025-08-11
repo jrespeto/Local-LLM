@@ -69,6 +69,8 @@ services:
       - QUEUE_BULL_REDIS_HOST=redis-n8n
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_DB=0
+      - EXECUTIONS_PROCESS=main
+      - N8N_RUNNER_ENABLED=false
       - GENERIC_TIMEZONE=America/New_York
       - N8N_DIAGNOSTICS_ENABLED=false
       - N8N_VERSION_NOTIFICATIONS_ENABLED=false
@@ -98,7 +100,7 @@ services:
       - n8n
       - all
     image: docker.n8n.io/n8nio/n8n
-    command: n8n worker --concurrency 5
+    command: worker --concurrency 5
     restart: unless-stopped
     depends_on:
       - postgres-n8n
@@ -113,6 +115,7 @@ services:
       - DB_POSTGRESDB_SCHEMA=public
       - N8N_ENCRYPTION_KEY=bc1tRVLqymCh3ardO27tBJPS34M/jhXf # copied from the volume
       - EXECUTIONS_MODE=queue
+      - N8N_RUNNER_ENABLED=true
       - N8N_LOG_OUTPUT=console
       - N8N_LOG_LEVEL=debug
       - NODE_ENV=production
@@ -151,7 +154,7 @@ services:
       - n8n
       - all
     image: docker.io/valkey/valkey:8-alpine
-    command: valkey-server --save 30 1 --loglevel warning
+    command: valkey-server --save 30 1 --loglevel debug
     #pull_policy: always
     restart: unless-stopped
     cap_drop:
