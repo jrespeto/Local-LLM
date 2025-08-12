@@ -12,7 +12,7 @@ services:
       - augmentoolkit
     restart: unless-stopped
     build:
-      context: ./docker
+      context: ./docker/augmentoolkit
       dockerfile: dockerfile.augmentoolkit
     volumes:
     - augmentoolkit:/app/data
