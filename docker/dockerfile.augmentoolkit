@@ -40,5 +40,7 @@ RUN pip install vllm
 # Final dependencies from requirements.txt using uv (now safe)
 RUN uv pip install -r requirements.txt
 
+COPY src/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 # Entry point
-CMD bash local_linux.sh small
+CMD ./entrypoint.sh
