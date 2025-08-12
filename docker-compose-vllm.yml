@@ -1,0 +1,36 @@
+
+services:
+
+  vllm1:
+    container_name: vllm1
+    hostname: vllm1
+    profiles:
+      - vllm1
+    image: docker.io/vllm/vllm-openai:latest
+    restart: always
+    shm_size: '32g'
+    ipc: host
+    devices:
+      - nvidia.com/gpu=all
+      - /dev/video0
+    environment:
+      - VLLM_NO_USAGE_STATS=1
+      - DO_NOT_TRACK=1
+      - HUGGING_FACE_HUB_TOKEN=#####################
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    command:
+      - --model
+      - Qwen/Qwen2.5-Coder-7B
+      - --dtype=half
+      - --tensor-parallel-size=2
+      - --enforce-eager
+      - --disable-custom-all-reduce
+      - --api-key
+      - ##########################
+    volumes:
+    - vllm1:/root/.cache/huggingface
+
+
+volumes:
+  vllm1:
+

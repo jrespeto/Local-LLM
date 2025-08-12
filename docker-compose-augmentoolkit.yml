@@ -1,0 +1,27 @@
+include:
+  - docker-compose-common.yml
+
+services:
+
+  augmentoolkit:
+    container_name: augmentoolkit
+    hostname: augmentoolkit
+    depends_on:
+      - redis
+    profiles:
+      - augmentoolkit
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/dockerfile.augmentoolkit
+    volumes:
+    - augmentoolkit:/app/data
+    ports:
+    - "127.0.0.1:8000:8000" # api
+    - "127.0.0.1:8083:8082" # vllm
+    devices:
+      - nvidia.com/gpu=all
+      - /dev/video0
+
+volumes:
+  augmentoolkit:

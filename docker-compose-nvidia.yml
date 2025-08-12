@@ -1,0 +1,12 @@
+
+services:
+
+  nvidia:
+    hostname: nvidia
+    profiles:
+      - test
+    image: docker.io/nvidia/cuda:12.8.1-runtime-ubuntu24.04
+    #pull_policy: always
+    command: nvidia-smi
+    devices:
+      - nvidia.com/gpu=all

@@ -1,0 +1,44 @@
+include:
+  - docker-compose-common.yml
+  - docker-compose-ollama.yml
+  - docker-compose-searxng.yml
+
+services:
+
+  openwebui:
+    container_name: openwebui
+    hostname: openwebui
+    profiles:
+      - langflow
+      - openwebui
+      - n8n
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    depends_on:
+      - redis
+    #pull_policy: always
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    environment:
+      ENV: dev
+      UVICORN_WORKERS: 1
+      ENABLE_WEBSOCKET_SUPPORT: true
+      USE_CUDA_DOCKER: true
+      VECTOR_DB: qdrant
+      QDRANT_URI: http://qdrant:6333
+      OLLAMA_BASE_URL: http://ollama:11434
+      COMFYUI_BASE_URL: http://comfyui:8188
+      ENABLE_WEB_SEARCH: true
+      WEB_SEARCH_RESULT_COUNT: 5
+      WEB_SEARCH_ENGINE: searxng
+      SEARXNG_QUERY_URL: http://searxng:8080/search?q=<query>
+      REDIS_URL: redis://redis:6379/1
+      WEBSOCKET_REDIS_URL: redis://redis:6379/1
+
+      # WEBUI_AUTH_TRUSTED_EMAIL_HEADER: x-user-email
+      # WEBUI_AUTH_TRUSTED_NAME_HEADER: foo_name
+
+volumes:
+  open-webui:

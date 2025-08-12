@@ -1,0 +1,36 @@
+include:
+  - docker-compose-common.yml
+
+services:
+
+  searxng:
+    container_name: searxng
+    # When setting up openwebui - use http://searxng:8080
+    profiles:
+      - searxng
+      - openwebui
+      - n8n
+    depends_on:
+      - redis
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    hostname: searxng
+    ports:
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
+      - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"

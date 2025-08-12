@@ -1,0 +1,23 @@
+
+services:
+
+  facefusion:
+    container_name: facefusion
+    hostname: facefusion
+    profiles:
+      - facefusion
+    restart: unless-stopped
+    image: docker.io/facefusion/facefusion:master-cuda
+    # build:
+    #   context: .
+    #   dockerfile: docker/dockerfile.facefusion
+    command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda' ]
+    volumes:
+    - facefusion:/facefusion
+    ports:
+    - "127.0.0.1:7870:7860"
+    devices:
+      - nvidia.com/gpu=all
+
+volumes:
+  facefusion:

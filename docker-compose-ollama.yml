@@ -1,0 +1,32 @@
+
+services:
+
+  ollama:
+    container_name: ollama
+    hostname: ollama
+    profiles:
+      - langflow
+      - ollama
+      - openwebui
+      - comfyui
+      - augmentoolkit
+      - n8n
+    image: docker.io/ollama/ollama:latest
+    restart: unless-stopped
+    #pull_policy: always
+    # ports:
+    #   - "127.0.0.1:11434:11434"
+    devices:
+      - nvidia.com/gpu=all
+    volumes:
+    - ollama:/root/.ollama
+    # environment:
+    #   - OLLAMA_NUM_PARALLEL=2
+    #   - OLLAMA_MAX_QUEUE=10
+    #   - OLLAMA_OFFLOAD=all
+    #   - NVIDIA_VISIBLE_DEVICES=all
+    #   - NVIDIA_DRIVER_CAPABILITIES=all
+
+
+volumes:
+  ollama:

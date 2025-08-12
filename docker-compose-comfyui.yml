@@ -1,0 +1,23 @@
+include:
+  - docker-compose-ollama.yml
+
+services:
+
+  comfyui:
+    container_name: comfyui
+    hostname: comfyui
+    profiles:
+      - comfyui
+    build:
+      context: .
+      dockerfile: docker/dockerfile.comfyui
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8188:8188"
+    devices:
+      - nvidia.com/gpu=all
+    volumes:
+    - comfyui:/comfyui
+
+volumes:
+  comfyui:
