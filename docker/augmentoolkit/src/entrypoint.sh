@@ -2,5 +2,5 @@
 
 cd /app
 
-linux.sh
+./linux.sh
 
