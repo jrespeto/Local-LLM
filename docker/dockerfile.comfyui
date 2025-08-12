@@ -29,9 +29,9 @@ RUN pip install -r requirements.txt
 EXPOSE 8188
 
 # This is move to /app/styles in the entrypoint.sh script after the volumes are mounted
-COPY docker/comfyui/src/styles.csv .
+COPY src/styles.csv .
 
-COPY docker/comfyui/src/entrypoint.sh /
+COPY src/entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh
 

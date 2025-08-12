@@ -9,7 +9,7 @@ services:
     profiles:
       - comfyui
     build:
-      context: .
+      context: docker/comfyui
       dockerfile: docker/dockerfile.comfyui
     restart: unless-stopped
     ports:
