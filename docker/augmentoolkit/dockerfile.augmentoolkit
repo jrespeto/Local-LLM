@@ -41,6 +41,9 @@ RUN pip install vllm
 RUN uv pip install -r requirements.txt
 
 COPY src/entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+COPY src/linux.sh .
+
+RUN chmod +x /entrypoint.sh && chmod +x *.sh
+
 # Entry point
 CMD /entrypoint.sh

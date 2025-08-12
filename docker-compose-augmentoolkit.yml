@@ -6,6 +6,7 @@ services:
   augmentoolkit:
     container_name: augmentoolkit
     hostname: augmentoolkit
+    user: root
     depends_on:
       - redis
     profiles:
@@ -22,6 +23,7 @@ services:
       - REDIS_DB=3
     ports:
     - "127.0.0.1:8000:8000" # api
+    - "127.0.0.1:5173:5173" # api
     - "127.0.0.1:8083:8082" # vllm
     devices:
       - nvidia.com/gpu=all
