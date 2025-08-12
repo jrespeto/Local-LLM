@@ -43,4 +43,4 @@ RUN uv pip install -r requirements.txt
 COPY src/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 # Entry point
-CMD ./entrypoint.sh
+CMD /entrypoint.sh
