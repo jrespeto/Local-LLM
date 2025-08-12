@@ -12,8 +12,8 @@ services:
       - augmentoolkit
     restart: unless-stopped
     build:
-      context: ./docker/augmentoolkit
-      dockerfile: docker/dockerfile.augmentoolkit
+      context: ./docker
+      dockerfile: dockerfile.augmentoolkit
     volumes:
     - augmentoolkit:/app/data
     environment:

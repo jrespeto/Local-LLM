@@ -10,7 +10,7 @@ services:
       - comfyui
     build:
       context: docker/comfyui
-      dockerfile: docker/dockerfile.comfyui
+      dockerfile: dockerfile.comfyui
     restart: unless-stopped
     ports:
       - "127.0.0.1:8188:8188"
