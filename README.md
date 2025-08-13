@@ -153,23 +153,38 @@ To start all the containers, run the following command: --profile all
   - [localhost:8080](http://localhost:8080)
 - [ollama](https://ollama.com) - LLM management
   - no ui ollama:11434
-- [qdrant](https://qdrant.tech) - Vector store and AI RAGs
-  - [localhost:6333](http://localhost:6333)
 - [n8n](https://n8n.io) - workflow automation platform with AI integrations and AI Agents
   - --profile n8n
+  - [postgresql](https://www.postgresql.org/) - DB dep for Langflow
+    - no ui postgres-n8n:5432
 - [Langflow](https://langflow.org) - low code framwork to build AI workflows and agents
   - --profile langflow
   - [localhost:7860](http://localhost:7860)
-- [postgresql](https://www.postgresql.org/) - DB dep for Langflow
-  - no ui postgres:5432
+  - [postgresql](https://www.postgresql.org/) - DB dep for Langflow
+    - no ui postgres-langflow:5432
 - [searxng](https://docs.searxng.org) - local internet metasearch engine
   - --profile searxng
   - [localhost:8082](http://localhost:8082)
-- [valkey](https://valkey.io/) - redis cache dep for searxng
-  - no ui valkey:6379
 - [comfyui](https://comfy.org) - image generation flamwork
   - --profile comfyui
   - [localhost:8188](http://localhost:8188)
+- [augmentoolkit](https://github.com/e-p-armstrong/augmentoolkit) - Create Custom LLMs
+  - --profile augmentoolkit
+  - [localhost:5173] - ui
+
+Common Containers
+
+- [valkey](https://valkey.io/) - redis cache dep for searxng
+  - no ui valkey:6379
+  - redis db's
+    - 0 - searxng
+    - 1 - openwebui
+    - 2 - n8n
+    - 3 - augmentoolkit
+    - 4 - langflow
+
+- [qdrant](https://qdrant.tech) - Vector store and AI RAGs
+  - [localhost:6333](http://localhost:6333)
 
 ---
 
