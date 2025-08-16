@@ -16,7 +16,9 @@ services:
       context: ./docker/augmentoolkit
       dockerfile: dockerfile.augmentoolkit
     volumes:
-    - augmentoolkit:/app/data
+    - ./data/augmentoolkit/output:/app/outputs
+    - ./data/augmentoolkit/input:/app/inputs/mydata
+    - ./data/augmentoolkit/config:/app/external_configs/myconfigs
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -28,6 +30,3 @@ services:
     devices:
       - nvidia.com/gpu=all
       - /dev/video0
-
-volumes:
-  augmentoolkit:

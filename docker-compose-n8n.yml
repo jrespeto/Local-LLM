@@ -108,7 +108,6 @@ services:
     volumes:
       - n8n-postgres:/var/lib/postgresql/data
 
-
 volumes:
   n8n_data:
   n8n-postgres:

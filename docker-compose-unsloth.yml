@@ -1,0 +1,27 @@
+
+services:
+
+  unsloth:
+    container_name: unsloth
+    hostname: unsloth
+    profiles:
+      - unsloth
+    restart: unless-stopped
+    image: docker.io/unsloth/unsloth
+    environment:
+    # - SSH_KEY=$(cat ~/.ssh/container_key.pub)
+    - JUPYTER_PASSWORD=mypassword
+    - JUPYTER_PORT=8888
+    - USER_PASSWORD="unsloth2024"  # user is unsloth
+
+    volumes:
+    - ./data/unsloth:/workspace/work
+    - ./data/augmentoolkit:/workspace/augmentoolkit
+
+    ports:
+    - "127.0.0.1:8888:8888" # jupyther lab
+    - "127.0.0.1:2222:22" # ssh
+    devices:
+      - nvidia.com/gpu=all
+      - /dev/video0
+

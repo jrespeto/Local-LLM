@@ -168,9 +168,15 @@ To start all the containers, run the following command: --profile all
 - [comfyui](https://comfy.org) - image generation flamwork
   - --profile comfyui
   - [localhost:8188](http://localhost:8188)
-- [augmentoolkit](https://github.com/e-p-armstrong/augmentoolkit) - Create Custom LLMs
+- [augmentoolkit](https://github.com/e-p-armstrong/augmentoolkit) - Create Custom Data for LLM Training
+  - This is a toolkit for creates domain-expert datasets
   - --profile augmentoolkit
   - [localhost:5173] - ui
+- [unsloth](https://unsloth.ai/) - Create Custom LLMs https://hub.docker.com/r/unsloth/unsloth
+  - This is a 13G image for building LLMs.
+  - data/augmentoolkits is also mounted in workspace
+  - --profile unsloth
+  - [localhost:8888/lab] default password is mypassword, changable in docker-compose-unsluth.yml line 13.
 
 Common Containers
 

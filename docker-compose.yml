@@ -9,3 +9,4 @@ include:
   - docker-compose-augmentoolkit.yml
   - docker-compose-vllm.yml
   - docker-compose-nvidia.yml
+  - docker-compose-unsloth.yml
