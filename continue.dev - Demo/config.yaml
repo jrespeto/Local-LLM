@@ -1,0 +1,143 @@
+name: Local Agent
+version: 1.0.0
+schema: v1
+models:
+  - name: Local - ollama embed
+    provider: ollama
+    model: nomic-embed-text:latest
+    apiBase: http://localhost:8080/ollama
+    roles:
+      - embed
+    requestOptions:
+      headers:
+        Authorization: "Bearer YOUR_TOKEN"
+  - name: Local - ollama
+    provider: ollama
+    model: AUTODETECT
+    apiBase: http://localhost:8080/ollama
+    requestOptions:
+      headers:
+        Authorization: "Bearer YOUR_TOKEN"
+  - name: Local - autocomplete
+    provider: ollama
+    model: qwen2.5-coder:3b-base
+    apiBase: http://localhost:8080/ollama
+    roles:
+      - autocomplete
+    autocompleteOptions:
+      useCache: false
+    requestOptions:
+      headers:
+        Authorization: "Bearer YOUR_TOKEN"
+context:
+  - provider: file
+  - provider: code
+  - provider: diff
+  - provider: terminal
+  - provider: codebase
+    params:
+      nRetrieve: 30
+      nFinal: 3
+  - provider: open
+    params:
+      onlyPinned: true
+  - provider: folder
+  - provider: search
+  - provider: url
+  - provider: os
+  - provider: problems
+  - provider: repo-map
+  - provider: web
+    params:
+      n: 10
+  - provider: docs
+  - provider: currentFile
+  - provider: tree
+docs:
+  - name: Linode API
+    startUrl: https://techdocs.akamai.com/linode-api/reference/api
+  - name: Devbox
+    startUrl: https://www.jetify.com/docs/devbox/
+  - name: Linode Doc
+    startUrl: https://techdocs.akamai.com/cloud-computing/docs/welcome
+  - name: vllm
+    startUrl: https://docs.vllm.ai/en/latest/
+  - name: podman
+    startUrl: https://podman.io/docs
+  - name: openwebui
+    startUrl: https://docs.openwebui.com/
+  - name: argoCD
+    startUrl: https://argo-cd.readthedocs.io/en/stable/
+  - name: kubernetes
+    startUrl: https://kubernetes.io/docs/home/
+  - name: langflow
+    startUrl: https://docs.langflow.org/
+  - name: qdrant
+    startUrl: https://qdrant.tech/documentation/
+  - name: Ansible
+    startUrl: https://docs.ansible.com
+  - name: FastAPI
+    startUrl: https://fastapi.tiangolo.com/
+
+prompts:
+  - name: check
+    description: Check for mistakes in my code
+    prompt: |
+      Please read the highlighted code and check for any mistakes. You should look for the following, and be extremely vigilant:
+        - Syntax errors
+        - Logic errors
+        - Security vulnerabilities
+        - Performance issues
+        - Anything else that looks wrong
+      Once you find an error, please explain it as clearly as possible, but without using extra words. For example, instead of saying 'I think there is a syntax error on line 5', you should say 'Syntax error on line 5'. Give your answer as one bullet point per mistake found.
+  - name: comment
+    description: Write comments for the highlighted code
+    prompt: Generate concise and meaningful comments to improve the readability and maintainability of the following code. Ensure that each comment adds value and avoids redundancy.
+  - name: docGen
+    description: Generate documentation for highlighted code
+    prompt: Provide a brief and concise documentation for the following function/class, including its purpose, parameters, return value, and any other relevant information.
+  - name: perfOpt
+    description: Suggest performance optimizations
+    prompt: Review the code and provide suggestions for improving its performance, such as optimizing loops, reducing redundant operations, or using more efficient algorithms. Avoid making unnecessary changes unless they significantly improve performance.
+  - name: codeRefactor
+    description: Suggest refactoring ideas to make the code cleaner and more maintainable
+    prompt: Review the code and suggest any refactorings that would improve its structure, readability, or maintainability. Focus on extracting functions, improving variable naming, and removing unnecessary complexity where possible.
+  - name: securityCheck
+    description: Check for potential security vulnerabilities in the code
+    prompt: Review the code and check for any potential security vulnerabilities or insecure practices, such as hard-coded secrets, improper validation, or other common security issues. Provide detailed explanations if you find any.
+  - name: styleCheck
+    description: Ensure the code adheres to a specific coding standard
+    prompt: Review the code and check for compliance with our coding standards, including naming conventions, indentation, spacing, and other stylistic guidelines. Provide suggestions for any deviations from these rules.
+  - name: unitTestGen
+    description: Generate unit tests for the given piece of code
+    prompt: Generate unit tests for the following function/class. Ensure that the tests cover a wide range of scenarios, including edge cases, and verify that they pass successfully.
+  - name: testStrategy
+    description: Suggest a testing strategy for the given piece of code
+    prompt: Review the code and suggest an appropriate test strategy to ensure its correctness, including unit tests, integration tests, or other relevant types. Include any specific edge cases that should be tested.
+  - name: codeReview
+    description: Provide a comprehensive review of the highlighted code
+    prompt: Provide a detailed review of the following code, covering aspects such as functionality, performance, security, and maintainability. Suggest improvements where necessary and explain your reasoning for each suggestion.
+  - name: dependencyCheck
+    description: Identify any potential issues with dependencies in the code
+    prompt: Review the code and identify any dependencies that may cause conflicts or security risks. Suggest alternatives if possible and explain why they are better choices.
+  - name: errorHandling
+    description: Improve error handling in the code
+    prompt: Review the code and suggest improvements to its error handling mechanisms. Ensure that errors are properly caught, logged, and handled to prevent application crashes or data loss.
+  - name: codeOptimize
+    description: Optimize code for internationalization
+    prompt: Review the code and suggest improvements to make it more suitable for internationalization. This includes using locale-aware functions, avoiding hardcoded strings, and ensuring proper support for different character sets.
+  - name: debuggingHints
+    description: Provide debugging hints for the given piece of code
+    prompt: Review the code and suggest potential issues that might cause bugs or unexpected behavior. Provide step-by-step debugging hints to help identify and resolve these problems.
+  - name: techDocUpdate
+    description: Update technical documentation based on new code changes
+    prompt: Review the code and update the relevant technical documentation to reflect any changes in functionality, parameters, or behavior. Ensure that the documentation remains accurate and up-to-date.
+  - name: summarize
+    description: Summarize the provided text
+    prompt: Provide a concise summary of the following text, capturing the main points and key information.
+  - name: keywordExtraction
+    description: Extract key words and phrases from the provided text
+    prompt: Extract the most important keywords and phrases from the following text. List them in order of significance.
+  - name: sentimentAnalysis
+    description: Analyze the sentiment of the provided text
+    prompt: Analyze the sentiment of the following text and classify it as positive, negative, or neutral.
