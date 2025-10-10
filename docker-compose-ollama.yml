@@ -14,19 +14,19 @@ services:
     image: docker.io/ollama/ollama:latest
     restart: unless-stopped
     #pull_policy: always
-    # ports:
+    # ports:  # if you want to expose the ports on the localsystem
     #   - "127.0.0.1:11434:11434"
     devices:
       - nvidia.com/gpu=all
     volumes:
     - ollama:/root/.ollama
-    # environment:
+    environment:
+      - OLLAMA_CONTEXT_LENGTH=16384  # Overwriting default 4k context_length
     #   - OLLAMA_NUM_PARALLEL=2
     #   - OLLAMA_MAX_QUEUE=10
     #   - OLLAMA_OFFLOAD=all
     #   - NVIDIA_VISIBLE_DEVICES=all
     #   - NVIDIA_DRIVER_CAPABILITIES=all
-
 
 volumes:
   ollama:

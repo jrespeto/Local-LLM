@@ -1,0 +1,43 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/qwen3:8b",
+  "small_model": "ollama/llama3.2:3b",
+  "tools": {
+	"bash": true,
+	"write": true,
+	"read": true,
+	"webfetch": true,
+	"edit": true,
+	"grep": true,
+	"glob": true,
+	"list": true,
+	"patch": true,
+  "todoread": true,
+  "todowrite": true
+  },
+  "formatter": {
+    "clang-format": {
+      "disabled": true
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama - openwebui",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+      "models": {
+        "llama3.2:3b":{
+          "name": "llama3.2:3b"
+        },
+        "mistral:latest":{
+          "name": "mistral"
+        },
+        "qwen3:8b":{
+          "name": "qwen3"
+        }
+      }
+    }
+  }
+}
