@@ -1,11 +1,19 @@
 # client_streamable.py (fixed)
 import asyncio
+import os
 from mcp import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 
+#
+# To test by bypassing nginx
+# podman exec -it mcp bash
+# export MCP_BASE_URL=http://localhost:8000/mcp
+# python client_streamable.py
+
+base_url = os.getenv("MCP_BASE_URL", "http://localhost:8081/mcp")  # default: talk to Nginx from inside container
+
 
 async def main():
-    base_url = "http://localhost:8081/mcp"  # or http://localhost:8000/mcp if bypassing Nginx
 
     async with streamablehttp_client(base_url) as (read_stream, write_stream, _):
         async with ClientSession(read_stream, write_stream) as session:

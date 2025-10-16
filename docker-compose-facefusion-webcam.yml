@@ -10,7 +10,7 @@ services:
     image: docker.io/facefusion/facefusion:master-cuda
     # build:
     #   context: .
-    #   dockerfile: docker/dockerfile.facefusion
+    #   dockerfile: docker/facefusion/dockerfile.facefusion
     command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda', '--ui-layouts', 'webcam' ]
     volumes:
     - facefusion:/facefusion

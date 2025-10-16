@@ -1,3 +1,5 @@
+include:
+  - docker-compose-common.yml
 
 services:
   mcp:

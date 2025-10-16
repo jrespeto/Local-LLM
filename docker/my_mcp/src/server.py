@@ -9,6 +9,7 @@ import feedparser
 
 mcp = FastMCP("DemoMCP", host="0.0.0.0", port=8000)
 
+
 @mcp.tool()
 def add(a: float, b: float) -> float:
     """Add two numbers and return the sum."""
@@ -46,9 +47,9 @@ def get_hn_newest(limit: int = 10) -> List[Dict[str, Any]]:
 
 
 if __name__ == "__main__":
-#  By default run in stdio for local dev; set MCP_TRANSPORT=http for HTTP mode
+    #  By default run in stdio for local dev; set MCP_TRANSPORT=http for HTTP mode
     transport = os.getenv("MCP_TRANSPORT", "stdio").lower()
     if transport in {"http", "streamable-http", "streamable_http"}:
         mcp.run(transport="streamable-http")
     else:
-        mcp.run() # stdio
+        mcp.run()  # stdio
