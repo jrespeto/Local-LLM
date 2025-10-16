@@ -34,9 +34,6 @@
         "llama3.2:3b-16k":{
           "tools": true
         },
-        "mistral:latest-16k":{
-          "tools": true
-        },
         "qwen3:8b-16k":{
           "tools": true
         }
