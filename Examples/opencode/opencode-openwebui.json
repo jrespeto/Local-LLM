@@ -41,7 +41,7 @@
     }
   },
   "mcp": {
-    "demo-mcp-remote": {
+    "DemoMCP": {
       "type": "remote",
       "url": "http://localhost:8081/mcp",
       "enabled": true

@@ -27,17 +27,21 @@
       "options": {
         "baseURL": "http://localhost:11434/v1",
       },
-      "models": {
-        "llama3.2:3b":{
-          "name": "llama3.2:3b"
+       "models": {
+        "llama3.2:3b-16k":{
+          "tools": true
         },
-        "mistral:latest":{
-          "name": "mistral"
-        },
-        "qwen3:8b":{
-          "name": "qwen3"
+        "qwen3:8b-16k":{
+          "tools": true
         }
       }
+    }
+  },
+  "mcp": {
+    "DemoMCP": {
+      "type": "remote",
+      "url": "http://localhost:8081/mcp",
+      "enabled": true
     }
   }
 }
