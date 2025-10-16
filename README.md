@@ -196,11 +196,9 @@ Common Containers
 
 ## Running
 
-To start the containers with the profile of the app or all apps
+To start the containers with the profile of the app.
 
 `podman-compose --profile openwebui --profile langflow up -d`
-
-`podman-compose --profile all up -d`
 
 To start up the containers and comfyui
 

@@ -1,5 +1,7 @@
 # opencode with ollama models
 
+## Setup opencode configs
+
 For this setup you want to start up openwebui or ollama containers.
 
 `podman-compose --profile openwebui up -d`
@@ -11,9 +13,12 @@ Copy the `opencode-openwebui.json` to `~/.config/opencode/opencode.json`
 Update the `sk-###########################` with your api token.
 
 You can remove the models in the config if you dont have them and replace them with models you do have.
+
 I been seeing that qwen3:8b works most of the time.
 
 To download a model, such as `qwen3:8b` with openwebui.
+
+## Updating Model Settings 16k
 
 The default context length Ollama has set it 4096 for the models.
 
@@ -34,6 +39,39 @@ Set parameter 'num_ctx' to '16384'
 >>> /save qwen3:8b-16k
 Created new model 'qwen3:8b-16k'
 >>> /bye
+```
+
+## Troubleshooting
+
+### Cert Errors
+
+If you have cert errors or using self signed certs.
+
+`export NODE_TLS_REJECT_UNAUTHORIZED=0`
+
+### Reviewing logs
+
+Running test to view logs.
+
+`opencode run -m ollama/qwen3:30b-16k --print-logs --log-level DEBUG test`
+
+### Dissble Thinking
+
+To Dissble thinking you can use prompts or with model options.
+
+`/no_think befor the promote`
+
+
+```json
+"qwen3:8b-16k":{
+    "options": {
+        "thinking": {
+            "type": "false"
+        },
+    },
+    "tools": true
+}
+
 ```
 
 ## Reference
