@@ -21,7 +21,7 @@ services:
     volumes:
     - ollama:/root/.ollama
     environment:
-      - OLLAMA_CONTEXT_LENGTH=16384  # Overwriting default 4k context_length
+    #   - OLLAMA_CONTEXT_LENGTH=16384  # Overwriting default 4k context_length
     #   - OLLAMA_NUM_PARALLEL=2
     #   - OLLAMA_MAX_QUEUE=10
     #   - OLLAMA_OFFLOAD=all

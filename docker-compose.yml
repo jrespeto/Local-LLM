@@ -10,3 +10,4 @@ include:
   - docker-compose-vllm.yml
   - docker-compose-nvidia.yml
   - docker-compose-unsloth.yml
+  - docker-compose-mcp.yml

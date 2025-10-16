@@ -1,6 +1,6 @@
 # opencode
 
-For this setup you want up openwebui containers.
+For this setup you want to up openwebui containers.
 
 Copy the opencode-openwebui.json to ~/.config/opencode/opencode.json
 

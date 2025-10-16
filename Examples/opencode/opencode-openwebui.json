@@ -26,21 +26,28 @@
       "name": "Ollama - openwebui",
       "options": {
         "baseURL": "http://localhost:8080/ollama/v1",
-        "headers": {
-          "Authorization": "Bearer sk-###########################"
+     "headers": {
+          "Authorization": "Bearer sk-################################"
         }
       },
       "models": {
-        "llama3.2:3b":{
-          "name": "llama3.2:3b"
+        "llama3.2:3b-16k":{
+          "tools": true
         },
-        "mistral:latest":{
-          "name": "mistral"
+        "mistral:latest-16k":{
+          "tools": true
         },
-        "qwen3:8b":{
-          "name": "qwen3"
+        "qwen3:8b-16k":{
+          "tools": true
         }
       }
+    }
+  },
+  "mcp": {
+    "demo-mcp-remote": {
+      "type": "remote",
+      "url": "http://localhost:8081/mcp",
+      "enabled": true
     }
   }
 }

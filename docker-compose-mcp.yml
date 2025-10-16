@@ -1,0 +1,16 @@
+
+services:
+  mcp:
+    hostname: mcp
+    profiles:
+      - ollama
+      - openwebui
+      - mcp
+    build:
+      context: ./docker/my_mcp
+      dockerfile: dockerfile.mcp
+    container_name: mcp
+    environment:
+    - MCP_TRANSPORT=http
+    # ports:
+    # - "8000:8000" # optional direct access (bypass Nginx)

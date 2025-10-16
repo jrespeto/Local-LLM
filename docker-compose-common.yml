@@ -54,6 +54,20 @@ services:
     volumes:
       - qdrant:/qdrant/storage
 
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    profiles:
+      - langflow
+      - openwebui
+      - mcp
+    depends_on:
+    - mcp
+    volumes:
+    - ./data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+    - "8081:80" # public entrypoint -> proxies to mcp
+
 volumes:
   qdrant:
   redis-data:

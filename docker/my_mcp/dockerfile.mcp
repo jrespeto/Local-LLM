@@ -1,0 +1,17 @@
+# Dockerfile
+FROM python:3.11-slim
+ENV PYTHONDONTWRITEBYTECODE=1 \
+PYTHONUNBUFFERED=1 \
+PIP_NO_CACHE_DIR=1
+
+RUN apt update && apt upgrade -y && apt install curl net-tools -y
+WORKDIR /app
+COPY src/ .
+RUN pip install -r requirements.txt
+
+# Streamable HTTP listens on 8000 by default
+EXPOSE 8000
+
+# Run in HTTP mode inside the container
+ENV MCP_TRANSPORT=http
+CMD ["python", "server.py"]
