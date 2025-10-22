@@ -8,6 +8,7 @@ services:
       - unsloth
     restart: unless-stopped
     image: docker.io/unsloth/unsloth
+    user: root
     environment:
     # - SSH_KEY=$(cat ~/.ssh/container_key.pub)
     - JUPYTER_PASSWORD=mypassword
@@ -22,6 +23,4 @@ services:
     - "127.0.0.1:8888:8888" # jupyther lab
     - "127.0.0.1:2222:22" # ssh
     devices:
-      - nvidia.com/gpu=all
-      - /dev/video0
-
+    - nvidia.com/gpu=all
